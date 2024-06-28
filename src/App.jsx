@@ -370,10 +370,10 @@ function App() {
         </nav>
 
         <Routes>
-          <Route path="/" element={<ProductListCard />} />
-          <Route path="/:producturl" element={<ProductDetail />} />
-          <Route path="/cart" element={<ProductBag />} />
-          <Route path="/all-orders" element={<OrderHistry />} />
+          <Route path="traditionalwear.vercel.app/" element={<ProductListCard />} />
+          <Route path="traditionalwear.vercel.app/:producturl" element={<ProductDetail />} />
+          <Route path="traditionalwear.vercel.app/cart" element={<ProductBag />} />
+          <Route path="traditionalwear.vercel.app/all-orders" element={<OrderHistry />} />
         </Routes>
       </BrowserRouter>
     </TextContext.Provider>
