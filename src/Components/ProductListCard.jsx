@@ -200,7 +200,7 @@ function ProductListCard() {
         {productList.map((val, index) => (
           <Link
             key={index}
-            to={"traditionalwear.vercel.app/" + val.productDescription.replaceAll(" ", "-")}
+            to={"/" + val.productDescription.replaceAll(" ", "-")}
             style={{ textDecoration: "none", color: "black" }}
           >
             <div
