@@ -1,0 +1,563 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Semi+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* width */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.navbar{
+    background: #212121;
+    font-family: "Sofia Sans Semi Condensed", sans-serif;
+    font-weight: 800;
+}
+
+.navbar .category-part{
+    color: white;
+    cursor: pointer;
+    padding: 17px 10px;
+    /* transition: all .3   s ease; */
+}
+
+.navbar .category-part:hover{
+    background: white;
+}
+
+.navbar .category-part:hover .category-text{
+    color: black;
+}
+
+.navbar .brand-part{
+    color: white;
+    cursor: pointer;
+    padding: 17px 10px;
+    /* transition: all .3   s ease; */
+}
+
+.navbar .brand-part:hover{
+    background: white;
+}
+
+.navbar .brand-part:hover .brand-text{
+    color: black;
+}
+
+.navbar .search-part{
+    background-color: #4a4a4a;
+    color: #dddddd;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    /* padding: 7px 16px; */
+    height: 40px;
+}
+
+.navbar .close-part{
+    background-color: #4a4a4a;
+    color: #dddddd;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    height: 40px;
+}
+
+.navbar .search-part.active{
+    background-color: white;
+}
+
+.navbar .search-part.active .search-input{
+    color: black;
+}
+
+.navbar .search-part.active .search-icon i{
+    color: black;
+}
+
+.navbar .search-part .search-input{
+    color: #dddddd;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 7px 16px;
+}
+
+.navbar .search-part .search-input::placeholder{
+    color: #a4a4a4;
+}
+
+.navbar .close-part.active{
+    background-color: white;
+    color: black;
+}
+
+.navbar .search-part .search-icon i{
+    color: #dddddd;
+    cursor: pointer;
+}
+
+.navbar .brand-part:hover{
+    background: white;
+}
+
+.navbar .brand-part:hover .brand-text{
+    color: black;
+}
+
+.navbar .Heart-bag-icon-part{
+    position: relative;
+}
+
+.navbar .Heart-bag-icon-part .bag-icon span{
+    color: white;
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    background: red;
+    top: -7px;
+    left: 28px;
+}
+
+.navbar .Heart-bag-icon-part .heart-icon i{
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 10px 16px;
+    /* padding-top: 9px; */
+    padding-left: 0px;
+}
+
+.navbar .Heart-bag-icon-part .heart-icon{
+    scale: 1;
+    transition: .4s;
+}
+
+.navbar .Heart-bag-icon-part .heart-icon:hover{
+    scale: 1.15;
+}
+
+
+.navbar .Heart-bag-icon-part .bag-icon i{
+    color: #fff;
+    cursor: pointer;
+    font-size: 17px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 10px 16px;
+    /* padding-top: 9px; */
+    /* transition: all .3   s ease; */
+}
+
+.navbar .Heart-bag-icon-part .bag-icon{
+    scale: 1;
+    transition: .4s;
+}
+
+.navbar .Heart-bag-icon-part .bag-icon:hover{
+    scale: 1.15;
+}
+
+.product-list-card{
+    transition: .4s;
+}
+
+.product-list-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.product-detail .price .current-price{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 650;
+}
+
+.product-detail .price .mrp-price{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.product-detail .rating{
+    margin-top: 35px;
+}
+
+.product-detail .rating .rateCount{
+    font-family: "Montserrat", sans-serif;
+    background: #49a862;
+    color: white;
+    padding: 3px 7px;
+    border-radius: 2px;
+}
+
+.product-detail .rating .peoplerated{
+    font-family: "Montserrat", sans-serif;
+}
+
+.pincode-input{
+    font-family: "Sofia Sans Semi Condensed", sans-serif;
+    display: flex;
+    border: 1px solid #cdcdcd;
+    padding: 5px 8px;
+    border-radius: 8px;
+}
+
+.pincode-input input{
+    flex-basis: 80%;
+    border: none;
+    outline: none;
+}
+
+.pincode-input input::-webkit-outer-spin-button,
+.pincode-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pincode-input button{
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    color: #da1c5c;
+    background: transparent;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.delivery-date{
+    font-family: "Sofia Sans Semi Condensed", sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.delivery-date .delivery-icon{
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.return-date{
+    font-family: "Sofia Sans Semi Condensed", sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+.return-date .return-icon{
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.return-date .return-text button{
+    border: none;
+    outline: none;
+    color: #da1c5c;
+    background: transparent;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.bag-buy-btn{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    z-index: 99;
+    overflow: hidden;
+}
+
+.bag-buy-btn button{
+    flex-basis: 45%;
+    padding: 15px 0px;
+    border-radius: 8px;
+}
+
+.bag-buy-btn .buy-btn{
+    border: 1px solid #da1c5c;
+    outline: none;
+    color: #da1c5c;
+    background: transparent;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.bag-buy-btn .bag-btn{
+    border: 1px solid #da1c5c;
+    outline: none;
+    background-color: #da1c5c;
+    color: white;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.bag-buy-btn .go-bag-btn{
+    flex-basis: 45%;
+    border: 1px solid #da1c5c;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    background-color: #da1c5c;
+    color: white;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 15px 0px;
+    border-radius: 8px;
+}
+
+.size-error-msg {
+    width: max-content;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.75);
+    position: sticky;
+    bottom: 50px;
+    left: 550px;
+    z-index: 100;
+    padding: 10px 20px;
+    padding-bottom: 0px;
+    display: flex;
+    align-content: center;
+    border-radius: 10px;
+    animation: fadeIn;
+    animation-duration: 5s;
+    animation-iteration-count: 1;
+}
+
+@keyframes fadeIn{
+    0%{
+        opacity: 0;
+    }
+    25%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 1;
+    }
+    75%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.remove-btn{
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0px;
+}
+
+.continue-shop{
+    text-decoration: none;
+    background-color: transparent;
+    color: #da1c5c;
+    font-size: 18px;
+    padding: 7px 15px;
+    border: 2px solid #da1c5c;
+    font-weight: bold;
+    transition: .5s;
+    border-radius: 6px;
+}
+
+.continue-shop:hover{
+    background-color: #da1c5c;
+    color: white;
+}
+
+.price-table{
+    font-family: "Sofia Sans Semi Condensed", sans-serif;
+}
+
+.check-out-btn{
+    background-color: #da1c5c;
+    color: white;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    padding: 7px 40px;
+    /* width: 12rem; */
+    border-radius: 20px;
+}
+
+
+.form{
+    position: relative;
+    width: 28rem;
+    height: 40px;
+    margin: 1rem;
+}
+
+.form.active .form__input{
+    border: 1px solid red;
+}
+
+.form.active .form__label{
+    color: red;
+}
+
+/* .check-box.active input{
+    accent-color: red;
+} */
+
+.check-box.active label{
+    color: red;
+}
+
+.form__input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Sofia Sans Semi Condensed", sans-serif;
+    font-weight: 600;
+    padding: 1.25rem;
+}
+
+.form__input::-webkit-outer-spin-button,
+.form__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form__label{
+    position: absolute;
+    left: 1rem;
+    top: 0.5rem;
+    padding: 0 0.5rem;
+    font-weight: 700;
+    cursor: text;
+    transition: all .3s ease;
+}
+
+.form__input:focus ~ .form__label,
+.form__input:not(:placeholder-shown).form__input:not(:focus) ~ .form__label{
+    top: -0.6rem;
+    font-size: 0.8rem;
+    left: 0.8rem;
+    background-color: white;
+}
+
+.done-img {
+    width: 100px;
+    display: block;
+    margin: 40px auto 0;
+}
+
+.done-img .path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+}
+
+.done-img .path.circle {
+    -webkit-animation: dash .9s ease-in-out;
+    animation: dash .9s ease-in-out;
+}
+
+.done-img .path.check {
+    stroke-dashoffset: -100;
+    -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+    animation: dash-check .9s .35s ease-in-out forwards;
+}
+
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+.drop-options{
+    position: absolute;
+    width: max-content;
+    background-color: black;
+    top: 60px;
+    left: 110px;
+    padding: 10px 0px;
+    border-radius: 7px;
+    display: none;
+}
+
+.drop-options.active{
+    display: inline;
+}
+
+.drop-options .triangle{
+    position: absolute;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid black;
+    top: -9px;
+    left: 5px;
+}
+
+.drop-options .drop-link{
+    text-decoration: none;
+    padding: 5px 20px;
+    color: white;
+}
+
+.drop-options td:hover{
+    background-color: white;
+    color: black;
+    transition: .4s;
+}
+
+.drop-options td:hover .drop-link{
+    color: black;
+}
+
