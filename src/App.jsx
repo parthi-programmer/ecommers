@@ -169,7 +169,7 @@ function App() {
         clickedBtnIndex,
       }}
     >
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <nav
           className="navbar navbar-expand-sm navbar-light py-0"
           style={{ position: "sticky", top: "0", zIndex: "99" }}
