@@ -2,17 +2,19 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { TextContext } from "../App";
+import { useDispatch, useSelector } from "react-redux";
 
 function ProductDetail() {
-  const { clickedProduct } = useContext(TextContext);
-  const { handelBagProduct } = useContext(TextContext);
-  const { clickedBtnIndex } = useContext(TextContext);
-  const { setClickedBtnIndex } = useContext(TextContext);
+
+  const product = useSelector((state) => state.clickedProduct)
+  const clickedProduct = product.product
+  const dispatch = useDispatch()
+
+
   const { userAddress } = useContext(TextContext);
   const { handelOrderHistry } = useContext(TextContext);
   const { exceptThisSymbols } = useContext(TextContext);
   const { handelChange } = useContext(TextContext);
-  const { handelProductSizeUpdate } = useContext(TextContext);
   const { fixedAddress } = useContext(TextContext);
   const { isCheckBoxClicked } = useContext(TextContext);
   const { setIsCheckBoxClicked } = useContext(TextContext);
@@ -21,6 +23,8 @@ function ProductDetail() {
   const { addressCreate } = useContext(TextContext);
   const { setisOrderSuccessBtnClicked } = useContext(TextContext);
   const { isOrderSuccessBtnClicked } = useContext(TextContext);
+  const { setClickedBtnIndex } = useContext(TextContext);
+  const { clickedBtnIndex } = useContext(TextContext);
 
   clickedProduct.length !== 0 &&
     localStorage.setItem("clickedProduct", JSON.stringify(clickedProduct));
@@ -47,6 +51,19 @@ function ProductDetail() {
     return () => clearTimeout(fadeOut);
   }, [isSizeSeleted]);
 
+  async function handelBagProduct(val) {
+    let tempCartProduct = await JSON.parse(localStorage.getItem("bagProduct"));
+
+    if (!tempCartProduct) {
+      localStorage.setItem("bagProduct", JSON.stringify([val]));
+    } else {
+      localStorage.setItem(
+        "bagProduct",
+        JSON.stringify([...tempCartProduct, val])
+      );
+    }
+  }
+
   useEffect(() => {
     if (selectedSize !== "") {
       currentProduct[clickedProductIndex].currentsize = selectedSize;
@@ -55,9 +72,10 @@ function ProductDetail() {
         : handelOrderHistry(currentProduct);
       setSelectedSize("");
       setClickedBtnIndex("");
-      console.log("Add to Bag", currentProduct);
     }
   }, [selectedSize]);
+
+  console.log(currentProduct);
 
   useEffect(() => {
     return () => {};
@@ -210,7 +228,6 @@ function ProductDetail() {
                       onClick={() => {
                         setClickedBtnIndex(sizeIndex);
                         setIsAddBtnClicked(false);
-                        handelProductSizeUpdate(sizeVal.size);
                       }}
                     >
                       {" "}
