@@ -1,15 +1,13 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import emptyCart from "../Asset/images/empty-cart.webp";
-import { useSelector } from 'react-redux';
+import { TextContext } from '../App';
 
 function OrderHistry() {
 
-    const product = useSelector((state) => state.orderedProduct)
+    const {orderedProducts} = useContext(TextContext)
 
-    const orderedProducts = product.orderProduct
-
-    // const {orderedProducts} = useContext(TextContext)
+    console.log(orderedProducts);
 
   return (
     <div>

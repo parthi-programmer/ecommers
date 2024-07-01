@@ -11,12 +11,9 @@ import productImg8 from "../Asset/images/product-img-8.webp";
 import similerIcon from "../Asset/images/similer-icon.png";
 import { Link } from "react-router-dom";
 import { TextContext } from "../App";
-import { useDispatch } from "react-redux";
-import { CURRENT_PRODUCT, currentProductAction } from "../actions/ClickProductAction";
 
 function ProductListCard() {
   const { handelClickedValue } = useContext(TextContext);
-  const dispatch = useDispatch()
 
   let productList = [
     {
@@ -206,7 +203,7 @@ function ProductListCard() {
             <div
               className="card m-4 product-list-card"
               onClick={() => {
-                dispatch(currentProductAction(val))
+                handelClickedValue(val);
               }}
               style={{ width: "12rem", cursor: "pointer", border: "none" }}
             >

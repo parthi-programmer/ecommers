@@ -3,22 +3,15 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import emptyCart from "../Asset/images/empty-cart.webp";
 import { Link } from "react-router-dom";
 import { TextContext } from "../App";
-import { useDispatch, useSelector } from "react-redux";
-import { cartProductAction } from "../actions/cartProductAction";
 
 const ProductBag = () => {
-  
-  const tempBag = useSelector((state) => state.cartProduct)
-  const bagProducts = tempBag.bag
-  const dispatch = useDispatch()
-
   const { handelOrderHistry } = useContext(TextContext);
-  // const { bagProducts } = useContext(TextContext);
+  const { bagProducts } = useContext(TextContext);
   const { setFixedAddress } = useContext(TextContext);
   const { fixedAddress } = useContext(TextContext);
-  // const { setBagProducts } = useContext(TextContext);
-  // const {updateOrderedProduct} = useContext(TextContext);
-  // const { bagLength } = useContext(TextContext);
+  const { setBagProducts } = useContext(TextContext);
+  // const {updateOrderedProduct} = useContext(TextContext)
+  const { bagLength } = useContext(TextContext);
   const { setisOrderSuccessBtnClicked } = useContext(TextContext);
   const { isOrderSuccessBtnClicked } = useContext(TextContext);
   // const { setUserAddress } = useContext(TextContext)
@@ -69,7 +62,7 @@ const ProductBag = () => {
   function cartProductDelete(delIndex) {
     let filterDetail = bagProducts.filter((val, index) => index !== delIndex);
     localStorage.setItem("bagProduct", JSON.stringify(filterDetail));
-    dispatch(cartProductAction(JSON.parse(localStorage.getItem("bagProduct"))));
+    setBagProducts(JSON.parse(localStorage.getItem("bagProduct")));
     bagProducts[delIndex].qty = 1;
     setDeleteIndex("");
   }
@@ -87,7 +80,7 @@ const ProductBag = () => {
       let selectProduct = JSON.parse(localStorage.getItem("bagProduct"));
       selectProduct[selectedBagProductIndex].currentsize = updateSize;
       localStorage.setItem("bagProduct", JSON.stringify(selectProduct));
-      dispatch(cartProductAction(JSON.parse(localStorage.getItem("bagProduct"))));
+      setBagProducts(JSON.parse(localStorage.getItem("bagProduct")));
     }
 
     setSelectedBagProductIndex("");
@@ -100,7 +93,7 @@ const ProductBag = () => {
       let selectProduct = JSON.parse(localStorage.getItem("bagProduct"));
       selectProduct[selectedBagProductIndex].qty = updateQty;
       localStorage.setItem("bagProduct", JSON.stringify(selectProduct));
-      dispatch(cartProductAction(JSON.parse(localStorage.getItem("bagProduct"))));
+      setBagProducts(JSON.parse(localStorage.getItem("bagProduct")));
     }
 
     setSelectedBagProductIndex("");
@@ -139,7 +132,7 @@ const ProductBag = () => {
 
   return (
     <div>
-      {bagProducts.length === 0 ? (
+      {bagLength === 0 ? (
         <div
           style={{
             width: "100%",
@@ -178,7 +171,7 @@ const ProductBag = () => {
             className="col-8"
             style={{ fontFamily: "Sofia Sans Semi Condensed, sans-serif" }}
           >
-            {bagProducts.length !== 0 && bagProducts.map((val, index) => (
+            {bagProducts.map((val, index) => (
               <div key={index} className="card mt-3 p-3">
                 <div className="row g-0">
                   <div className="col-md-2">
@@ -893,7 +886,7 @@ const ProductBag = () => {
             color="primary"
             onClick={() => {
               orderSuccesModelOpen();
-              dispatch(cartProductAction([]));
+              setBagProducts([]);
               localStorage.removeItem("bagProduct");
               setisOrderSuccessBtnClicked(!isOrderSuccessBtnClicked);
             }}

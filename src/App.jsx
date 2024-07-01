@@ -12,28 +12,26 @@ import {
 import ProductDetail from "./Components/ProductDetail";
 import ProductBag from "./Components/ProductBag";
 import OrderHistry from "./Components/OrderHistry";
-import { cartProductAction } from "./actions/cartProductAction";
-import { useDispatch, useSelector } from "react-redux";
-import { orderProductAction } from "./actions/OrderHistryAction";
 
 export const TextContext = createContext();
 
 function App() {
-  const bag = useSelector((state) => state.cartProduct);
-  const bagProducts = bag.bag;
-  const dispatch = useDispatch();
-
   const [inputValue, setInputValue] = useState("");
   const [isInputClick, setIsInputClick] = useState(false);
   const [isDropBtnClicked, setIsDropBtnClicked] = useState(false);
+  const [clickedProduct, setClickedProduct] = useState([]);
+  const [bagProducts, setBagProducts] = useState([]);
+  const [orderedProducts, setOrderedProducts] = useState([]);
   const [fixedAddress, setFixedAddress] = useState([]);
+  const [clickedBtnIndex, setClickedBtnIndex] = useState("");
+  const [productSize, setProductSize] = useState("");
+  const [bagLength, setBagLength] = useState("0");
   const [isOrderSuccessBtnClicked, setisOrderSuccessBtnClicked] =
     useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckBoxClicked, setIsCheckBoxClicked] = useState(false);
   const [isPlaceBtnClicked, setIsPlaceBtnClicked] = useState(false);
-  const [clickedBtnIndex, setClickedBtnIndex] = useState("");
   const [userAddress, setUserAddress] = useState({
     firstname: "",
     lastname: "",
@@ -47,6 +45,10 @@ function App() {
 
   function handelInputValue(e) {
     setInputValue(e.target.value);
+  }
+
+  function handelClickedValue(val) {
+    setClickedProduct([val]);
   }
 
   async function handelOrderHistry(val) {
@@ -65,19 +67,32 @@ function App() {
   }
 
   useEffect(() => {
-    dispatch(cartProductAction(JSON.parse(localStorage.getItem("bagProduct"))));
+    let temp = JSON.parse(localStorage.getItem("orderedProduct"));
+    setOrderedProducts(temp);
+  }, [isOrderSuccessBtnClicked]);
+
+  async function handelBagProduct(val) {
+    let tempCartProduct = await JSON.parse(localStorage.getItem("bagProduct"));
+
+    if (!tempCartProduct) {
+      localStorage.setItem("bagProduct", JSON.stringify([val]));
+    } else {
+      localStorage.setItem(
+        "bagProduct",
+        JSON.stringify([...tempCartProduct, val])
+      );
+    }
+  }
+
+  useEffect(() => {
+    setBagProducts(JSON.parse(localStorage.getItem("bagProduct")));
   }, [clickedBtnIndex]);
 
   useEffect(() => {
-    let temp = JSON.parse(localStorage.getItem("orderedProduct"));
-    dispatch(orderProductAction(temp));
-  }, [isOrderSuccessBtnClicked]);
-
-  // useEffect(() => {
-  //   if (bagProducts) {
-  //     setBagLength(bagProducts.length);
-  //   }
-  // }, [bagProducts]);
+    if (bagProducts) {
+      setBagLength(bagProducts.length);
+    }
+  }, [bagProducts]);
 
   function handelChange(e) {
     const value = e.target.value;
@@ -144,12 +159,32 @@ function App() {
     }
   }
 
+  function handelProductSizeUpdate(val) {
+    setProductSize(val);
+  }
+
+  // useEffect(()=>{
+  //   setFixedAddress(localStorage.getItem('address'))
+  // }, [isPlaceBtnClicked])
+
+  // console.log(bagProducts);
+
   return (
     <TextContext.Provider
       value={{
+        handelClickedValue,
+        clickedProduct,
+        handelBagProduct,
+        orderedProducts,
+        bagProducts,
         handelOrderHistry,
         setFixedAddress,
         fixedAddress,
+        setBagProducts,
+        clickedBtnIndex,
+        setClickedBtnIndex,
+        bagLength,
+        setBagLength,
         setisOrderSuccessBtnClicked,
         isOrderSuccessBtnClicked,
         userAddress,
@@ -165,22 +200,24 @@ function App() {
         setIsCheckBoxClicked,
         isPlaceBtnClicked,
         setIsPlaceBtnClicked,
-        setClickedBtnIndex,
-        clickedBtnIndex,
+        handelProductSizeUpdate,
       }}
     >
-      <BrowserRouter basename="/">
+      <BrowserRouter>
         <nav
           className="navbar navbar-expand-sm navbar-light py-0"
           style={{ position: "sticky", top: "0", zIndex: "99" }}
         >
           <div className="container-fluid">
-            <Link className="navbar-brand mx-5 mt-4" to={"/"}>
-              <p
-                className="ms-3 text-white"
+            <a className="navbar-brand mx-5" href="#">
+              {" "}
+              <img
+                src={logo}
+                alt=""
+                className="ms-3"
                 style={{ width: "85px", height: "45px" }}
-              > Traditional Wear </p>
-            </Link>
+              />{" "}
+            </a>
             <button
               className="navbar-toggler"
               type="button"
@@ -266,7 +303,8 @@ function App() {
                     }}
                   >
                     <div className="search-icon">
-                      <i className="bi bi-search"></i>
+                      {" "}
+                      <i className="bi bi-search"></i>{" "}
                     </div>
                     <input
                       type="text"
@@ -288,7 +326,8 @@ function App() {
                         setInputValue("");
                       }}
                     >
-                      <i class="bi bi-x-lg"></i>
+                      {" "}
+                      <i class="bi bi-x-lg"></i>{" "}
                     </div>
                   )}
                 </div>
@@ -305,10 +344,9 @@ function App() {
                       color: "white",
                     }}
                   >
-                    <i className="bi bi-bag"></i>
-                    {bagProducts && bagProducts.length !== 0 && (
-                      <span> {bagProducts.length} </span>
-                    )}
+                    {" "}
+                    <i className="bi bi-bag"></i>{" "}
+                    {bagLength !== 0 && <span> {bagLength} </span>}{" "}
                   </Link>
                   <p
                     href="#"
@@ -335,7 +373,8 @@ function App() {
                         <tr>
                           <td>
                             <Link className="drop-link">
-                              <span> My Profile </span>
+                              {" "}
+                              <span> My Profile </span>{" "}
                             </Link>
                           </td>
                         </tr>
@@ -348,15 +387,17 @@ function App() {
                                 setIsDropBtnClicked(false);
                               }}
                             >
-                              <span> Order Histry </span>
-                            </Link>
+                              {" "}
+                              <span> Order Histry </span>{" "}
+                            </Link>{" "}
                             <br />
                           </td>
                         </tr>
                         <tr>
                           <td>
                             <Link className="drop-link">
-                              <span> My Address </span>
+                              {" "}
+                              <span> My Address </span>{" "}
                             </Link>
                           </td>
                         </tr>
